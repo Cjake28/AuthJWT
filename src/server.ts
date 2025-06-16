@@ -1,14 +1,8 @@
-import express,{Request, Response, Send} from "express";
 
-import "dotenv/config"
+import {app} from './app';
 
-const app = express();
+const PORT = process.env.PORT;
 
-app.get("/", (request:Request, response: Response) => {
-    response.send("hello");
-    return
-})
-
-app.listen( process.env.PORT, () => {
-    console.log(`Running on Port ${process.env.PORT}`);
+app.listen(PORT || 9220, () => {
+	console.log(`Server running on port ${PORT}`);
 });

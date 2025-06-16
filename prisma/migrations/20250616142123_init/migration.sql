@@ -7,6 +7,7 @@ CREATE TABLE `User` (
     `password` VARCHAR(191) NOT NULL,
     `role` ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
     `isVerified` BOOLEAN NOT NULL DEFAULT false,
+    `emailVerified` BOOLEAN NOT NULL DEFAULT false,
     `resetPasswordCode` CHAR(6) NULL,
     `resetPasswordExpires` DATETIME(3) NULL,
     `verificationCode` CHAR(6) NULL,
