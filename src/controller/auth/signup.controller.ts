@@ -32,8 +32,10 @@ export const signup = async (req: Request, res: Response): Promise<void> =>{
 		throw new AppError("Please provide all required fields", 400);
 	}
 
+	const EmailLower: string = email.toLowerCase();
+
 	const user = await prisma.user.findUnique({
-		where: { email: email }
+		where: { email: EmailLower }
 	});
 
 	const isEmailVerified = user?.emailVerified ?? false;
@@ -50,13 +52,14 @@ export const signup = async (req: Request, res: Response): Promise<void> =>{
 		throw new AppError("User suspended", 400);
 	}
 
-	const deleteUser = await prisma.user.delete({
-		where: {email: email}
-	})
+	if (user) {
+		const deleteUser = await prisma.user.delete({where: {email: EmailLower}})
 
-	if (deleteUser) {
-		console.log("Deleted user with email:", email);
+		if (deleteUser) {
+			console.log("Deleted user with email:", EmailLower);
+		}
 	}
+
 
 	const encryptedPassword: string = await bcrypt.hash(password, 10);
 
@@ -78,7 +81,7 @@ export const signup = async (req: Request, res: Response): Promise<void> =>{
 		data: {
 			firstName: firstname,
 			lastName: surname ?? "",
-			email: email,
+			email: EmailLower,
 			password: encryptedPassword,
 			isVerified: false,
 			emailVerified: false,

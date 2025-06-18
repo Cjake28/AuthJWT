@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 
 type Payload = {
-    userId: string; // User ID
+    userId: number; // User ID
     email: string; // User email
     role: string; // User role
 }
@@ -18,7 +18,7 @@ export const generateAccessToken = (payload: Payload)  => {
   );
 };
 
-export const generateRefreshToken = (userId: String) => {
+export const generateRefreshToken = (userId: number) => {
     return jwt.sign(
       {
         sub: userId,  // User ID
