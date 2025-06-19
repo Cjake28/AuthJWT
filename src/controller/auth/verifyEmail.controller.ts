@@ -83,12 +83,10 @@ export const verifyEmail = async (req: Request, res: Response, next: NextFunctio
 		message: 'Email verified successfully',
 		data: {
 			user: {
-				id: userId,
+				userId,
 				email: EmailLower,
 				role,
 			},
-			accessToken,
-			refreshToken,
 		},
 	});
 
