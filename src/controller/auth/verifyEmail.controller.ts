@@ -1,6 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcrypt'
 
 import AppError from '../../utils/AppError';    
 

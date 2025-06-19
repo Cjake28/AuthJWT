@@ -65,7 +65,7 @@ export const signup = async (req: Request, res: Response): Promise<void> =>{
 
 	const verificationCode: string = generateVerificationCode();
 	const verificationCodeSentAt: Date = new Date();
-	const verificationCodeExpiresAt: Date = new Date(Date.now() + 5 * 60 * 1000); // Expires in 5 minutes
+	const verificationCodeExpiresAt: Date = new Date(Date.now() + 10 * 60 * 1000); // Expires in 5 minutes
 
 	try {
     await sendSignupEmailVerification(email, verificationCode);
