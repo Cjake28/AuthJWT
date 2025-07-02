@@ -34,7 +34,8 @@ An Express‑based authentication API with JWTs, built in TypeScript and backed 
 
 * Node.js & npm installed
 * MySQL database
-* A Gmail account (use App Password)
+* A Gmail account
+* Enable 2FA on your Gmail account and generate an App Password (use this as `nodemailerEmailPass`)
 
 ### Installation
 
@@ -59,16 +60,16 @@ An Express‑based authentication API with JWTs, built in TypeScript and backed 
    PORT=8081
 
    # MySQL connection
-   DATABASE_URL="mysql://root:Netsu28@localhost:3306/authjwt"
+   DATABASE_URL="mysql://root:password@localhost:3306/authjwt"
 
    # JWT configuration
    JWT_SECRET="JWT_SECRET"
    REFRESH_SECRET="REFRESH_SECRET"
 
    # Gmail SMTP via nodemailer
-   GMAIL_USER="supnetcjs@gmail.com"
-   nodemailerEmail="supnetcjs@gmail.com"
-   nodemailerEmailPass="nspk cbww xvfa nunr"
+   GMAIL_USER="*****@gmail.com"
+   nodemailerEmail="****@gmail.com"
+   nodemailerEmailPass="**** **** **** ****"
 
    # Node environment
    NODE_ENV="development"
@@ -105,13 +106,14 @@ By default, the API listens on **`http://localhost:8081`**.
 
 ### Auth Routes
 
-| Method | Endpoint                    | Description                                                               |
-| ------ | --------------------------- | ------------------------------------------------------------------------- |
-| POST   | `/auth/signup`              | Register user & send verification code. Body: `{ name, email, password }` |
-| POST   | `/auth/verify-email`        | Verify code & activate user. Body: `{ email, code }`                      |
-| POST   | `/auth/resend-verify-email` | Resend the verification code. Body: `{ email }`                           |
-| POST   | `/auth/signin`              | Sign in & receive JWT. Body: `{ email, password }`                        |
+| Method | Endpoint                        | Description                                                                             |
+| ------ | ------------------------------- | --------------------------------------------------------------------------------------- |
+| POST   | `/api/auth/signup`              | Register user & send verification code. Body: `{ firstname, surname, email, password }` |
+| POST   | `/api/auth/verify-email`        | Verify code & activate user. Body: `{ email, code }`                                    |
+| POST   | `/api/auth/resend-verify-email` | Resend the verification code. Body: `{ email }`                                         |
+| POST   | `/api/auth/signin`              | Sign in & receive JWT. Body: `{ email, password }`                                      |
 
+//you can add this
 ### Protected Example
 
 | Method | Endpoint      | Description           |
@@ -136,8 +138,7 @@ By default, the API listens on **`http://localhost:8081`**.
 │   ├── routes             # Express routers (e.g., authRoutes)
 │   ├── utils              # Helpers (generateCode, sendEmail)
 │   ├── app.ts             # App entrypoint
-│   └── server.ts          # to run the server
-    
+│   └──server.ts           # start the server
 ├── .env
 ├── package.json
 └── tsconfig.json
