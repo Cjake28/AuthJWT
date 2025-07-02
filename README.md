@@ -42,7 +42,7 @@ An Express‑based authentication API with JWTs, built in TypeScript and backed 
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/<your‑username>/AuthJWT.git
+   git https://github.com/Cjake28/AuthJWT.git
    cd AuthJWT
    ```
 
