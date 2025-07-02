@@ -113,17 +113,6 @@ By default, the API listens on **`http://localhost:8081`**.
 | POST   | `/api/auth/resend-verify-email` | Resend the verification code. Body: `{ email }`                                         |
 | POST   | `/api/auth/signin`              | Sign in & receive JWT. Body: `{ email, password }`                                      |
 
-//you can add this
-### Protected Example
-
-| Method | Endpoint      | Description           |
-| ------ | ------------- | --------------------- |
-| GET    | `/profile/me` | Returns current user. |
-
-> To call protected routes, include the JWT in the `Authorization: Bearer <token>` header.
-
----
-
 ## Folder Structure
 
 ```
